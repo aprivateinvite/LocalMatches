@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Private Matches | Discreet Encounters</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BVPQ1ETG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-G0BVPQ1ETG');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--primary:#ff2d55;
+--accent:#7f00ff;
+--glass:rgba(0,0,0,0.6);
+}
+
+*{box-sizing:border-box}
+
+body,html{
+margin:0;
+padding:0;
+height:100%;
+font-family:'Inter',sans-serif;
+background:#000;
+color:#fff;
+overflow:hidden;
+}
+
+.bg-video{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:0;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,.85));
+backdrop-filter:blur(1.5px);
+z-index:1;
+}
+
+.card{
+position:relative;
+z-index:2;
+max-width:460px;
+margin:auto;
+padding:42px 32px;
+background:var(--glass);
+backdrop-filter:blur(16px);
+border-radius:26px;
+text-align:center;
+box-shadow:0 30px 60px rgba(0,0,0,.6);
+border:1px solid rgba(255,255,255,.08);
+animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(30px)}
+to{opacity:1; transform:translateY(0)}
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:6px 14px;
+border-radius:20px;
+background:rgba(76,175,80,.15);
+color:#4caf50;
+font-size:12px;
+font-weight:600;
+margin-bottom:22px;
+}
+
+.dot{
+width:8px;
+height:8px;
+background:#4caf50;
+border-radius:50%;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:1}
+50%{opacity:.4}
+100%{opacity:1}
+}
+
+h1{
+font-size:30px;
+font-weight:800;
+line-height:1.15;
+margin-bottom:14px;
+}
+
+p{
+font-size:16px;
+color:#d0d0d0;
+line-height:1.6;
+margin-bottom:32px;
+}
+
+.features{
+text-align:left;
+font-size:14px;
+margin-bottom:28px;
+}
+
+.features div{
+margin-bottom:10px;
+display:flex;
+gap:10px;
+align-items:flex-start;
+}
+
+.features span{
+color:var(--primary);
+font-weight:700;
+}
+
+.redirect-msg{
+margin-top:20px;
+font-size:18px;
+font-weight:700;
+}
+
+.countdown{
+margin-top:10px;
+font-size:28px;
+font-weight:800;
+color:var(--primary);
+}
+
+.progress-bar{
+width:100%;
+height:8px;
+background:#222;
+border-radius:10px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,var(--primary),var(--accent));
+transition:width .3s;
+}
+
+.footer{
+margin-top:22px;
+font-size:11px;
+color:#888;
+}
+
+@media (max-width:768px){
+.bg-video{display:none;}
+}
+
+</style>
+</head>
+
+<body>
+
+<video class="bg-video" autoplay loop muted playsinline preload="metadata">
+<source src="https://raw.githubusercontent.com/aprivateinvite/LocalMatches/main/Videos/video_novo.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="card">
+
+<div class="badge">
+<div class="dot"></div>
+<span id="badgeText"></span>
+</div>
+
+<h1 id="title"></h1>
+
+<p id="description"></p>
+
+<div class="features">
+<div><span>✔</span><span id="f1"></span></div>
+<div><span>✔</span><span id="f2"></span></div>
+<div><span>✔</span><span id="f3"></span></div>
+</div>
+
+<div class="redirect-msg" id="redirectText"></div>
+
+<div class="countdown" id="countdown">3</div>
+
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
+
+<div class="footer" id="footerText"></div>
+
+</div>
+
+<script>
+
+const affiliateLink="https://bggcgce.datesoffers.com/s/59cd6ef16fd92";
+
+const translations = {
+
+en:{
+badge:"Active users near you",
+title:"Real People.<br>Private Encounters.",
+description:"Meet verified singles nearby who are tired of games and fake profiles.",
+f1:"No fake bots or empty chats",
+f2:"Private & discreet environment",
+f3:"Verified profiles only",
+redirect:"Searching matches near you...",
+footer:"🔒 Secure access · 18+ only · Privacy protected"
+},
+
+pt:{
+badge:"Usuários ativos perto de você",
+title:"Pessoas reais.<br>Encontros privados.",
+description:"Conheça pessoas verificadas perto de você.",
+f1:"Sem bots ou chats vazios",
+f2:"Ambiente privado e discreto",
+f3:"Perfis verificados",
+redirect:"Procurando pessoas próximas...",
+footer:"🔒 Acesso seguro · Apenas maiores de 18"
+},
+
+es:{
+badge:"Usuarios activos cerca de ti",
+title:"Personas reales.<br>Encuentros privados.",
+description:"Conoce personas verificadas cerca de ti.",
+f1:"Sin bots ni chats vacíos",
+f2:"Ambiente privado y discreto",
+f3:"Perfiles verificados",
+redirect:"Buscando personas cerca de ti...",
+footer:"🔒 Acceso seguro · Solo mayores de 18"
+}
+
+};
+
+function detectLanguage(){
+
+const lang=navigator.language || navigator.userLanguage;
+
+if(lang.startsWith("pt")) return "pt";
+if(lang.startsWith("es")) return "es";
+
+return "en";
+
+}
+
+function applyLanguage(){
+
+const lang=detectLanguage();
+const t=translations[lang];
+
+document.getElementById("badgeText").innerHTML=t.badge;
+document.getElementById("title").innerHTML=t.title;
+document.getElementById("description").innerHTML=t.description;
+
+document.getElementById("f1").innerHTML=t.f1;
+document.getElementById("f2").innerHTML=t.f2;
+document.getElementById("f3").innerHTML=t.f3;
+
+document.getElementById("redirectText").innerHTML=t.redirect;
+document.getElementById("footerText").innerHTML=t.footer;
+
+gtag('event','language_detected',{event_label:lang});
+
+}
+
+function startAnalytics(){
+
+const isMobile=/iPhone|Android/i.test(navigator.userAgent);
+
+gtag('event','landing_view');
+gtag('event','device_type',{event_label:isMobile?'Mobile':'Desktop'});
+
+}
+
+function startRedirect(){
+
+let seconds=3;
+const countdown=document.getElementById("countdown");
+const progress=document.getElementById("progress");
+
+let progressValue=0;
+
+const interval=setInterval(()=>{
+
+seconds--;
+countdown.textContent=seconds;
+
+progressValue+=33;
+progress.style.width=progressValue+"%";
+
+gtag('event','progress',{event_label:progressValue+'%'});
+
+if(seconds<=0){
+
+clearInterval(interval);
+
+gtag('event','redirect_offer');
+
+setTimeout(()=>{
+window.location.href=affiliateLink;
+},400);
+
+}
+
+},1000);
+
+}
+
+window.addEventListener("load",()=>{
+
+applyLanguage();
+startAnalytics();
+
+const video=document.querySelector(".bg-video");
+if(video){video.play().catch(()=>{});}
+
+startRedirect();
+
+});
+
+</script>
+
+</body>
+</html>
