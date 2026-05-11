@@ -1,280 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NPJQZFMK7X"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-NPJQZFMK7X');
-</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Meet Singles Near You | Private Online Dating</title>
+<title>Meet People Near You Tonight</title>
+<meta name="description" content="Discover people near your location and start chatting today.">
 
-<meta name="description" content="Meet real singles near you today.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meet People Near You Tonight">
+<meta name="twitter:description" content="Discover people near your location and start chatting today.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/aprivateinvite/LocalMatches/main/imagem/image_1.jpeg">
 
 <style>
-body {font-family: Arial; margin:0; background:#0b1120; color:white;}
-.container {max-width:1100px; margin:auto; padding:40px 20px;}
-.hero {padding:120px 20px; text-align:center; background:linear-gradient(#0b1120,#020617);}
-.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
-.card {background:#1e293b;padding:25px;border-radius:12px;}
-img {width:100%;border-radius:10px;margin-top:20px;}
+[v-cloak] { display: none; }
 
-/* CTA */
-.mobile-cta-bar {
-position:fixed; bottom:15px; left:50%;
-transform:translateX(-50%);
-width:calc(100% - 20px); max-width:500px;
-background:#00BFFF; padding:14px;
-border-radius:14px; text-align:center;
-font-weight:bold; color:white;
-z-index:9999; opacity:0;
-box-shadow:0 8px 25px rgba(0,0,0,0.35);
-transition:0.5s;
-text-decoration: none;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    /* Imagem exclusiva para o fundo da página usando o link Raw do GitHub */
+    background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://raw.githubusercontent.com/aprivateinvite/LocalMatches/main/imagem/image_2.jpeg') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.desktop-cta {
-position:fixed; bottom:30px; right:30px;
-background:#00BFFF; padding:16px 24px;
-border-radius:50px; color:white;
-font-weight:bold;
-z-index:9999; opacity:0;
-transition:0.5s;
-text-decoration: none;
+.hero {
+    padding: 100px 20px;
+    flex: 1;
 }
 
-.subtext {
-font-size:12px;
-opacity:0.9;
-margin-top:6px;
-font-weight: normal;
+.cta {
+    background: #00BFFF;
+    padding: 15px 30px;
+    border-radius: 8px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background 0.3s ease;
 }
 
-.social-proof {
-position:fixed;
-bottom:80px;
-left:50%;
-transform:translateX(-50%);
-background:#111827;
-padding:10px 16px;
-border-radius:10px;
-font-size:14px;
-opacity:0;
-z-index:9998;
-transition:0.5s;
+.cta:hover {
+    background: #009acd;
 }
 
-@media(max-width:768px){.desktop-cta{display:none;}}
-@media(min-width:769px){.mobile-cta-bar,.social-proof{display:none;}}
+.online {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #38bdf8;
+}
+
+.footer {
+    padding: 20px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.footer a {
+    color: #64748b;
+    text-decoration: none;
+    margin: 0 10px;
+}
 </style>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
 
 </head>
 
 <body>
 
-<section class="hero">
-<h1 id="title">Meet Real Singles Near You</h1>
-<p id="subtitle">Thousands of people are looking to meet someone new today.</p>
-<img src="https://raw.githubusercontent.com/aprivateinvite/LocalMatches/refs/heads/main/imagem/image_1.jpeg" alt="Singles Near You">
-</section>
+<div id="app" v-cloak>
 
-<div class="container">
+    <section class="hero">
 
-<h2 id="why_title">Why Online Dating Is Growing Fast</h2>
-<p id="why_text">Millions of people use online dating platforms to meet new partners.</p>
+        <h1>{{ t.headline.replace('{greet}', greet).replace('{city}', city) }}</h1>
 
-<img src="https://raw.githubusercontent.com/aprivateinvite/LocalMatches/refs/heads/main/imagem/image_2.jpeg" alt="Online Dating">
+        <p>{{ t.subtext.replace('{city}', city) }}</p>
 
-<h2 id="how_title">How It Works</h2>
-<div class="grid">
-<div class="card">
-<h3 id="step1_title">Create a Profile</h3>
-<p id="step1_text">Join in seconds and set up your profile.</p>
-</div>
-<div class="card">
-<h3 id="step2_title">Discover Matches</h3>
-<p id="step2_text">Browse profiles near you.</p>
-</div>
-<div class="card">
-<h3 id="step3_title">Start Chatting</h3>
-<p id="step3_text">Connect instantly.</p>
-</div>
-</div>
+        <div class="online">
+            <span>{{ onlineCount }}</span> {{ t.onlineText }}
+        </div>
 
-<h2 id="benefits_title">Benefits</h2>
-<div class="grid">
-<div class="card">
-<h3 id="benefit1_title">Private Platform</h3>
-<p id="benefit1_text">Your profile stays secure.</p>
-</div>
-<div class="card">
-<h3 id="benefit2_title">Active Members</h3>
-<p id="benefit2_text">Thousands online daily.</p>
-</div>
-<div class="card">
-<h3 id="benefit3_title">Easy to Use</h3>
-<p id="benefit3_text">Works on mobile.</p>
-</div>
-</div>
+        <a :href="ctaLink" class="cta">{{ t.cta }}</a>
 
-<h2 id="faq_title">Frequently Asked Questions</h2>
-<h3 id="faq1_q">Is the platform safe?</h3>
-<p id="faq1_a">Yes. Profiles remain private.</p>
+    </section>
 
-<h3 id="faq2_q">Can I meet people near me?</h3>
-<p id="faq2_a">Yes, based on your location.</p>
+    <footer class="footer">
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <span>18+ Only</span>
+    </footer>
 
 </div>
-
-<div id="socialProof" class="social-proof"></div>
-
-<a id="ctaMobile" href="https://bggcgce.datesoffers.com/s/59cd6ef16fd92" class="mobile-cta-bar"></a>
-<a id="ctaDesktop" href="https://bggcgce.datesoffers.com/s/59cd6ef16fd92" class="desktop-cta"></a>
 
 <script>
-// DICIONÁRIO COMPLETO DE TRADUÇÕES
-const translations = {
-    pt: {
-        title: "Conheça pessoas solteiras perto de você",
-        subtitle: "Milhares de pessoas estão procurando alguém novo hoje.",
-        why_title: "Por que o namoro online cresce tão rápido?",
-        why_text: "Milhões de pessoas usam plataformas de namoro online para conhecer novos parceiros.",
-        how_title: "Como Funciona",
-        step1_title: "Crie um Perfil",
-        step1_text: "Participe em segundos e configure seu perfil.",
-        step2_title: "Descubra Combinações",
-        step2_text: "Navegue por perfis perto de você.",
-        step3_title: "Comece a Conversar",
-        step3_text: "Conecte-se instantaneamente.",
-        benefits_title: "Benefícios",
-        benefit1_title: "Plataforma Privada",
-        benefit1_text: "Seu perfil permanece seguro.",
-        benefit2_title: "Membros Ativos",
-        benefit2_text: "Milhares online diariamente.",
-        benefit3_title: "Fácil de Usar",
-        benefit3_text: "Funciona perfeitamente no celular.",
-        faq_title: "Perguntas Frequentes",
-        faq1_q: "A plataforma é segura?",
-        faq1_a: "Sim. Os perfis permanecem privados.",
-        faq2_q: "Posso conhecer pessoas perto de mim?",
-        faq2_a: "Sim, com base na sua localização atual.",
-        cta_subtext: "✔ Sem cadastro • ✔ Privado • ✔ Instantâneo",
-        social_proof: "🔥 {n} online agora"
-    },
-    en: {
-        title: "Meet Real Singles Near You",
-        subtitle: "Thousands of people are looking to meet someone new today.",
-        why_title: "Why Online Dating Is Growing Fast",
-        why_text: "Millions of people use online dating platforms to meet new partners.",
-        how_title: "How It Works",
-        step1_title: "Create a Profile",
-        step1_text: "Join in seconds and set up your profile.",
-        step2_title: "Discover Matches",
-        step2_text: "Browse profiles near you.",
-        step3_title: "Start Chatting",
-        step3_text: "Connect instantly.",
-        benefits_title: "Benefits",
-        benefit1_title: "Private Platform",
-        benefit1_text: "Your profile stays secure.",
-        benefit2_title: "Active Members",
-        benefit2_text: "Thousands online daily.",
-        benefit3_title: "Easy to Use",
-        benefit3_text: "Works on mobile.",
-        faq_title: "Frequently Asked Questions",
-        faq1_q: "Is the platform safe?",
-        faq1_a: "Yes. Profiles remain private.",
-        faq2_q: "Can I meet people near me?",
-        faq2_a: "Yes, based on your location.",
-        cta_subtext: "✔ No signup • ✔ Private • ✔ Instant",
-        social_proof: "🔥 {n} online now"
-    }
-};
+document.addEventListener('DOMContentLoaded', () => {
+    const { createApp, ref, computed, onMounted } = Vue;
 
-// FRASES DE ROTAÇÃO PARA O BOTÃO CTA (CONVERSÃO)
-const ctaPhrases = {
-    pt: [
-        "Ver pessoas perto de você",
-        "Encontrar combinações agora",
-        "Conversar com solteiros locais"
-    ],
-    en: [
-        "See Matches Near You",
-        "Find Matches Now",
-        "Chat with Local Singles"
-    ]
-};
+    const translations = {
+        en: {
+            fallbackCity: "your area",
+            greetings: { morning: "Good morning", afternoon: "Good afternoon", evening: "Good evening" },
+            headline: "{greet}! People in {city} are looking to meet tonight",
+            subtext: "New profiles from {city} joined in the last few minutes",
+            onlineText: "people online right now",
+            cta: "See Matches"
+        },
+        pt: {
+            fallbackCity: "sua região",
+            greetings: { morning: "Bom dia", afternoon: "Boa tarde", evening: "Boa noite" },
+            headline: "{greet}! Pessoas em {city} estão querendo um encontro hoje à noite",
+            subtext: "Novos perfis de {city} entraram nos últimos minutos",
+            onlineText: "pessoas online agora",
+            cta: "Ver Perfis"
+        }
+    };
 
-// DETECTAR IDIOMA
-let lang = navigator.language.slice(0,2);
-if(!translations[lang]) lang = "en";
+    const app = createApp({
+        setup() {
+            const lang = ref("en");
+            const city = ref("your area");
+            const timeOfDay = ref("evening");
+            const onlineCount = ref(0);
+            const ctaLink = ref("https://bggcgce.datesoffers.com/s/59cd6ef16fd92");
 
-// APLICAR TRADUÇÕES NO CONTEÚDO ESTÁTICO
-for (let key in translations[lang]) {
-    let element = document.getElementById(key);
-    if (element) {
-        element.innerText = translations[lang][key];
-    }
-}
+            const t = computed(() => translations[lang.value] || translations['en']);
+            
+            const greet = computed(() => {
+                return t.value.greetings[timeOfDay.value];
+            });
 
-// LÓGICA DO CTA (ROTAÇÃO DE FRASES)
-let currentCtaIndex = 0;
+            const initLang = () => {
+                const navLang = navigator.language.slice(0, 2);
+                if (translations[navLang]) {
+                    lang.value = navLang;
+                    document.documentElement.lang = navLang;
+                    if(city.value === "your area") {
+                        city.value = translations[navLang].fallbackCity;
+                    }
+                }
+            };
 
-function updateCTA() {
-    let phrases = ctaPhrases[lang];
-    let mainText = phrases[currentCtaIndex];
-    let subTextHTML = `<div class='subtext'>${translations[lang].cta_subtext}</div>`;
+            const initGeo = async () => {
+                try {
+                    const res = await fetch('https://get.geojs.io/v1/ip/geo.json');
+                    const data = await res.json();
+                    if (data.city) city.value = data.city;
+                    else if (data.region) city.value = data.region;
+                } catch (e) {
+                    console.log("Geo fallback failed.");
+                }
+            };
 
-    // Atualiza o Mobile (Texto + Subtexto)
-    document.getElementById("ctaMobile").innerHTML = mainText + subTextHTML;
-    
-    // Atualiza o Desktop (Apenas o texto principal, como era no original)
-    document.getElementById("ctaDesktop").innerText = mainText;
+            const initTime = () => {
+                const hour = new Date().getHours();
+                if (hour < 12) timeOfDay.value = "morning";
+                else if (hour < 18) timeOfDay.value = "afternoon";
+                else timeOfDay.value = "evening";
+            };
 
-    // Move para a próxima frase, voltando a zero quando chegar no final da lista
-    currentCtaIndex = (currentCtaIndex + 1) % phrases.length;
-}
+            const initOnlineCount = () => {
+                const min = 120;
+                const max = 350;
+                onlineCount.value = Math.floor(Math.random() * (max - min) + min);
+            };
 
-// Inicia com a primeira frase e rotaciona a cada 3.5 segundos
-updateCTA();
-setInterval(updateCTA, 3500); 
+            const initTracking = () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.toString()) {
+                    const separator = ctaLink.value.includes('?') ? '&' : '?';
+                    ctaLink.value = `${ctaLink.value}${separator}${urlParams.toString()}`;
+                }
+            };
 
-// PROVA SOCIAL VISÍVEL (COM TRADUÇÃO APLICADA)
-function proof(){
-    let n = Math.floor(Math.random()*20)+20;
-    let el = document.getElementById("socialProof");
-    el.innerText = translations[lang].social_proof.replace('{n}', n);
-    el.style.opacity = "1";
-    setTimeout(() => { el.style.opacity = "0"; }, 3000);
-}
-setInterval(proof, 5000);
+            onMounted(() => {
+                initLang();
+                initGeo();
+                initTime();
+                initOnlineCount();
+                initTracking();
+            });
 
-// EXIBIÇÃO REAL (SCROLL + TEMPO)
-let shown = false;
-function show(){
-    if(shown) return;
-    shown = true;
-    document.getElementById("ctaMobile").style.opacity="1";
-    document.getElementById("ctaDesktop").style.opacity="1";
-    document.getElementById("socialProof").style.opacity="1";
-}
+            return { city, t, greet, onlineCount, ctaLink };
+        }
+    });
 
-window.addEventListener("scroll", () => {
-    let s = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if(s > 0.3) show();
+    app.mount('#app');
 });
-
-setTimeout(show, 4000);
-
-// TRACKING
-document.getElementById("ctaMobile").onclick = () => gtag('event','click_mobile');
-document.getElementById("ctaDesktop").onclick = () => gtag('event','click_desktop');
-
 </script>
 
 </body>
