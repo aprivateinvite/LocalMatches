@@ -1,215 +1,480 @@
 <!DOCTYPE html>
 <html lang="en" id="html-root">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPJQZFMK7X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-NPJQZFMK7X');
+  </script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NPJQZFMK7X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet People Near You Tonight</title>
+  <meta name="description" content="Discover people near your location and start chatting today." />
 
-  gtag('config', 'G-NPJQZFMK7X');
-</script>
-    
+  <!-- PRECONNECT -->
+  <link rel="preconnect" href="https://bggcgce.litracksm.com">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.localmatches.live/">
+  <meta property="og:title" content="Meet People Near You Tonight">
+  <meta property="og:description" content="Discover people near your location and start chatting today.">
+  <meta property="og:image" content="https://www.localmatches.live/imagem/image_1.jpeg">
 
-<title>Meet People Near You Tonight</title>
-<meta name="description" content="Discover people near your location and start chatting today.">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meet People Near You Tonight">
+  <meta name="twitter:description" content="Discover people near your location and start chatting today.">
+  <meta name="twitter:image" content="https://www.localmatches.live/imagem/image_1.jpeg">
 
-<!-- Open Graph Tags (Facebook, WhatsApp, Telegram) -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.localmatches.live/">
-<meta property="og:title" content="Meet People Near You Tonight">
-<meta property="og:description" content="Discover people near your location and start chatting today.">
-<meta property="og:image" content="https://www.localmatches.live/imagem/image_1.jpeg">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
 
-<!-- Twitter Card Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Meet People Near You Tonight">
-<meta name="twitter:description" content="Discover people near your location and start chatting today.">
-<meta name="twitter:image" content="https://www.localmatches.live/imagem/image_1.jpeg">
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
-[v-cloak] { display: none; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(
+          rgba(15, 23, 42, 0.85),
+          rgba(15, 23, 42, 0.95)
+        ),
+        url('https://raw.githubusercontent.com/aprivateinvite/LocalMatches/main/imagem/image_2.jpeg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    /* Imagem exclusiva para o fundo da página usando o link Raw do GitHub */
-    background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://raw.githubusercontent.com/aprivateinvite/LocalMatches/main/imagem/image_2.jpeg') center/cover no-repeat;
-    color: white;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+    /* HERO */
+    .hero {
+      padding: 100px 20px 140px;
+      flex: 1;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeHero 0.8s ease forwards;
+    }
 
-.hero {
-    padding: 100px 20px;
-    flex: 1;
-}
+    @keyframes fadeHero {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.cta {
-    background: #00BFFF;
-    padding: 15px 30px;
-    border-radius: 8px;
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: background 0.3s ease;
-}
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      max-width: 900px;
+      margin: auto;
+    }
 
-.cta:hover {
-    background: #009acd;
-}
+    .hero p {
+      font-size: 18px;
+      opacity: 0.92;
+      max-width: 700px;
+      margin: 20px auto;
+    }
 
-.online {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #38bdf8;
-}
+    /* ONLINE */
+    .online {
+      margin-top: 25px;
+      font-size: 18px;
+      color: #38bdf8;
+      font-weight: bold;
+    }
 
-.footer {
-    padding: 20px;
-    font-size: 12px;
-    color: #64748b;
-}
+    /* SOCIAL PROOF */
+    .social-proof {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #cbd5e1;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateY(6px);
+    }
 
-.footer a {
-    color: #64748b;
-    text-decoration: none;
-    margin: 0 10px;
-}
-</style>
+    /* CTA MOBILE */
+    .mobile-cta {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 20px);
+      max-width: 520px;
+      background: #00BFFF;
+      color: white;
+      padding: 16px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
 
-<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+    /* CTA DESKTOP */
+    .desktop-cta {
+      position: fixed;
+      right: 30px;
+      bottom: 30px;
+      background: #00BFFF;
+      color: white;
+      padding: 18px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
 
+    .cta-subtext {
+      font-size: 12px;
+      margin-top: 6px;
+      opacity: 0.92;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 20px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .footer a {
+      color: #64748b;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    /* PULSE */
+    @keyframes pulseMobile {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.04); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+
+    @keyframes pulseDesktop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse-mobile {
+      animation: pulseMobile 1.8s infinite;
+    }
+
+    .pulse-desktop {
+      animation: pulseDesktop 1.8s infinite;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .desktop-cta {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-cta {
+        display: none;
+      }
+    }
+  </style>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
 </head>
 
 <body>
-
-<div id="app" v-cloak>
-
+  <div id="app" v-cloak>
     <section class="hero">
+      <h1>
+        {{ t.headline.replace('{greet}', greet).replace('{city}', city) }}
+      </h1>
 
-        <h1>{{ t.headline.replace('{greet}', greet).replace('{city}', city) }}</h1>
+      <p>
+        {{ t.subtext.replace('{city}', city) }}
+      </p>
 
-        <p>{{ t.subtext.replace('{city}', city) }}</p>
+      <div class="online">
+        <span>{{ onlineCount }}</span>
+        {{ t.onlineText }}
+      </div>
 
-        <div class="online">
-            <span>{{ onlineCount }}</span> {{ t.onlineText }}
-        </div>
-
-        <a :href="ctaLink" class="cta">{{ t.cta }}</a>
-
+      <div class="social-proof" id="socialProof">
+        🔥 {{ proofText }}
+      </div>
     </section>
 
+    <!-- CTA MOBILE -->
+    <a id="ctaMobile" class="mobile-cta" rel="nofollow noopener" @click.prevent="handleCTA">
+      <div>
+        {{ t.cta }}
+      </div>
+      <div class="cta-subtext">
+        {{ t.trust }}
+      </div>
+    </a>
+
+    <!-- CTA DESKTOP -->
+    <a id="ctaDesktop" class="desktop-cta" rel="nofollow noopener" @click.prevent="handleCTA">
+      {{ t.cta }}
+    </a>
+
     <footer class="footer">
-        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <span>18+ Only</span>
+      <a href="#">Privacy Policy</a>
+      |
+      <a href="#">Terms of Service</a>
+      |
+      <span>18+ Only</span>
     </footer>
+  </div>
 
-</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const { createApp, ref, computed, onMounted } = Vue;
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const { createApp, ref, computed, onMounted } = Vue;
+      // =========================
+      // LINKS
+      // =========================
+      const LINK_A = "https://bggcgce.litracksm.com/s/59cd6ef16fd92";
+      const LINK_B = "https://ddmphry.loyalparamour.org/u262rgu";
 
-    const translations = {
+      // =========================
+      // TRANSLATIONS
+      // =========================
+      const translations = {
         en: {
-            fallbackCity: "your area",
-            greetings: { morning: "Good morning", afternoon: "Good afternoon", evening: "Good evening" },
-            headline: "{greet}! People in {city} are looking to meet tonight",
-            subtext: "New profiles from {city} joined in the last few minutes",
-            onlineText: "people online right now",
-            cta: "See Matches"
+          fallbackCity: "your area",
+          greetings: {
+            morning: "Good morning",
+            afternoon: "Good afternoon",
+            evening: "Good evening"
+          },
+          headline: "{greet}! People in {city} are looking to meet tonight",
+          subtext: "New profiles from {city} joined in the last few minutes",
+          onlineText: "people online right now",
+          cta: "See Matches Near You",
+          trust: "✔ No signup • ✔ Private • ✔ Instant access",
+          proof: "new people joined near you"
         },
         pt: {
-            fallbackCity: "sua região",
-            greetings: { morning: "Bom dia", afternoon: "Boa tarde", evening: "Boa noite" },
-            headline: "{greet}! Pessoas em {city} estão querendo um encontro hoje à noite",
-            subtext: "Novos perfis de {city} entraram nos últimos minutos",
-            onlineText: "pessoas online agora",
-            cta: "Ver Perfis"
+          fallbackCity: "sua região",
+          greetings: {
+            morning: "Bom dia",
+            afternoon: "Boa tarde",
+            evening: "Boa noite"
+          },
+          headline: "{greet}! Pessoas em {city} estão querendo um encontro hoje à noite",
+          subtext: "Novos perfis de {city} entraram nos últimos minutos",
+          onlineText: "pessoas online agora",
+          cta: "Ver Pessoas Perto de Você",
+          trust: "✔ Sem cadastro • ✔ Privado • ✔ Acesso imediato",
+          proof: "novas pessoas entraram perto de você"
         }
-    };
+      };
 
-    const app = createApp({
+      // =========================
+      // APP
+      // =========================
+      const app = createApp({
         setup() {
-            const lang = ref("en");
-            const city = ref("your area");
-            const timeOfDay = ref("evening");
-            const onlineCount = ref(0);
-            const ctaLink = ref("https://bggcgce.litracksm.com/s/59cd6ef16fd92");
+          // STATE
+          const lang = ref("en");
+          const city = ref("");
+          const timeOfDay = ref("evening");
+          const onlineCount = ref(0);
+          const proofText = ref("");
+          const shown = ref(false);
 
-            const t = computed(() => translations[lang.value] || translations['en']);
-            
-            const greet = computed(() => {
-                return t.value.greetings[timeOfDay.value];
+          // COMPUTED
+          const t = computed(() => {
+            return translations[lang.value] || translations.en;
+          });
+
+          const greet = computed(() => {
+            return t.value.greetings[timeOfDay.value];
+          });
+
+          // LANG
+          const initLang = () => {
+            const navLang = navigator.language.slice(0, 2);
+            if (translations[navLang]) {
+              lang.value = navLang;
+              document.documentElement.lang = navLang;
+            }
+          };
+
+          // GEO
+          const initGeo = async () => {
+            city.value = t.value.fallbackCity;
+            try {
+              const res = await fetch('https://ipapi.co/json/');
+              const data = await res.json();
+              if (data.city) {
+                city.value = data.city;
+              } else if (data.region) {
+                city.value = data.region;
+              }
+            } catch (e) {
+              console.log("Geo failed");
+            }
+          };
+
+          // TIME
+          const initTime = () => {
+            const hour = new Date().getHours();
+            if (hour < 12) {
+              timeOfDay.value = "morning";
+            } else if (hour < 18) {
+              timeOfDay.value = "afternoon";
+            } else {
+              timeOfDay.value = "evening";
+            }
+          };
+
+          // ONLINE COUNT
+          const initOnlineCount = () => {
+            const min = 120;
+            const max = 350;
+            onlineCount.value = Math.floor(Math.random() * (max - min) + min);
+          };
+
+          // SOCIAL PROOF
+          const updateProof = () => {
+            const n = Math.floor(Math.random() * 18) + 8;
+            proofText.value = `${n} ${t.value.proof}`;
+
+            const el = document.getElementById("socialProof");
+            if (!el) return;
+
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+
+            setTimeout(() => {
+              el.style.opacity = "0.75";
+            }, 2500);
+          };
+
+          // CTA SHOW
+          const showCTA = () => {
+            if (shown.value) return;
+            shown.value = true;
+
+            const mobile = document.getElementById("ctaMobile");
+            const desktop = document.getElementById("ctaDesktop");
+
+            if (mobile) {
+              mobile.style.opacity = "1";
+              mobile.classList.add("pulse-mobile");
+            }
+
+            if (desktop) {
+              desktop.style.opacity = "1";
+              desktop.classList.add("pulse-desktop");
+            }
+          };
+
+          // CLICK STORAGE
+          const getClickCount = () => {
+            let count = localStorage.getItem("ctaClickCount");
+            if (!count) {
+              count = 0;
+            }
+            return parseInt(count);
+          };
+
+          const saveClickCount = (count) => {
+            localStorage.setItem("ctaClickCount", count);
+          };
+
+          // NEXT LINK
+          const getNextLink = () => {
+            let count = getClickCount();
+            count++;
+            saveClickCount(count);
+
+            // ÍMPAR = A
+            // PAR = B
+            if (count % 2 === 1) {
+              return { url: LINK_A, type: "A", count };
+            }
+
+            return { url: LINK_B, type: "B", count };
+          };
+
+          // CTA CLICK
+          const handleCTA = () => {
+            const result = getNextLink();
+
+            // TRACK
+            if (typeof gtag !== "undefined") {
+              gtag('event', 'cta_click', {
+                event_category: 'engagement',
+                event_label: result.type,
+                value: result.count
+              });
+            }
+
+            // REDIRECT
+            setTimeout(() => {
+              window.location.href = result.url;
+            }, 120);
+          };
+
+          // MOUNTED
+          onMounted(() => {
+            initLang();
+            initGeo();
+            initTime();
+            initOnlineCount();
+            updateProof();
+
+            setInterval(updateProof, 5000);
+
+            // SCROLL
+            window.addEventListener("scroll", () => {
+              const scroll = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+              if (scroll > 0.2) {
+                showCTA();
+              }
             });
 
-            const initLang = () => {
-                const navLang = navigator.language.slice(0, 2);
-                if (translations[navLang]) {
-                    lang.value = navLang;
-                    document.documentElement.lang = navLang;
-                    if(city.value === "your area") {
-                        city.value = translations[navLang].fallbackCity;
-                    }
-                }
-            };
+            // FALLBACK
+            setTimeout(showCTA, 3500);
+          });
 
-            const initGeo = async () => {
-                try {
-                    const res = await fetch('https://get.geojs.io/v1/ip/geo.json');
-                    const data = await res.json();
-                    if (data.city) city.value = data.city;
-                    else if (data.region) city.value = data.region;
-                } catch (e) {
-                    console.log("Geo fallback failed.");
-                }
-            };
-
-            const initTime = () => {
-                const hour = new Date().getHours();
-                if (hour < 12) timeOfDay.value = "morning";
-                else if (hour < 18) timeOfDay.value = "afternoon";
-                else timeOfDay.value = "evening";
-            };
-
-            const initOnlineCount = () => {
-                const min = 120;
-                const max = 350;
-                onlineCount.value = Math.floor(Math.random() * (max - min) + min);
-            };
-
-            const initTracking = () => {
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.toString()) {
-                    const separator = ctaLink.value.includes('?') ? '&' : '?';
-                    ctaLink.value = `${ctaLink.value}${separator}${urlParams.toString()}`;
-                }
-            };
-
-            onMounted(() => {
-                initLang();
-                initGeo();
-                initTime();
-                initOnlineCount();
-                initTracking();
-            });
-
-            return { city, t, greet, onlineCount, ctaLink };
+          // RETURN
+          return {
+            city,
+            t,
+            greet,
+            onlineCount,
+            proofText,
+            handleCTA
+          };
         }
+      });
+
+      app.mount('#app');
     });
-
-    app.mount('#app');
-});
-</script>
-
+  </script>
 </body>
 </html>
