@@ -121,8 +121,7 @@
       font-weight: bold;
       z-index: 9999;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      opacity: 0;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 1;
     }
 
     /* CTA DESKTOP */
@@ -138,8 +137,7 @@
       font-weight: bold;
       z-index: 9999;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      opacity: 0;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 1;
     }
 
     .cta-subtext {
@@ -223,8 +221,8 @@
       </div>
     </section>
 
-    <!-- CTA MOBILE -->
-    <a id="ctaMobile" class="mobile-cta" rel="nofollow noopener" @click.prevent="handleCTA">
+    <!-- CTA MOBILE (carregado imediatamente com efeito de pulso) -->
+    <a id="ctaMobile" class="mobile-cta pulse-mobile" rel="nofollow noopener" @click.prevent="handleCTA">
       <div>
         {{ t.cta }}
       </div>
@@ -233,8 +231,8 @@
       </div>
     </a>
 
-    <!-- CTA DESKTOP -->
-    <a id="ctaDesktop" class="desktop-cta" rel="nofollow noopener" @click.prevent="handleCTA">
+    <!-- CTA DESKTOP (carregado imediatamente com efeito de pulso) -->
+    <a id="ctaDesktop" class="desktop-cta pulse-desktop" rel="nofollow noopener" @click.prevent="handleCTA">
       {{ t.cta }}
     </a>
 
@@ -302,7 +300,6 @@
           const timeOfDay = ref("evening");
           const onlineCount = ref(0);
           const proofText = ref("");
-          const shown = ref(false);
 
           // COMPUTED
           const t = computed(() => {
@@ -373,25 +370,6 @@
             }, 2500);
           };
 
-          // CTA SHOW
-          const showCTA = () => {
-            if (shown.value) return;
-            shown.value = true;
-
-            const mobile = document.getElementById("ctaMobile");
-            const desktop = document.getElementById("ctaDesktop");
-
-            if (mobile) {
-              mobile.style.opacity = "1";
-              mobile.classList.add("pulse-mobile");
-            }
-
-            if (desktop) {
-              desktop.style.opacity = "1";
-              desktop.classList.add("pulse-desktop");
-            }
-          };
-
           // CLICK STORAGE
           const getClickCount = () => {
             const countStr = localStorage.getItem("ctaClickCount");
@@ -447,17 +425,6 @@
             updateProof();
 
             setInterval(updateProof, 5000);
-
-            // SCROLL
-            window.addEventListener("scroll", () => {
-              const scroll = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-              if (scroll > 0.2) {
-                showCTA();
-              }
-            });
-
-            // FALLBACK
-            setTimeout(showCTA, 3500);
           });
 
           // RETURN
