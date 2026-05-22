@@ -394,11 +394,10 @@
 
           // CLICK STORAGE
           const getClickCount = () => {
-            let count = localStorage.getItem("ctaClickCount");
-            if (!count) {
-              count = 0;
-            }
-            return parseInt(count);
+            const countStr = localStorage.getItem("ctaClickCount");
+            if (!countStr) return 0;
+            const count = parseInt(countStr, 10);
+            return isNaN(count) ? 0 : count; 
           };
 
           const saveClickCount = (count) => {
