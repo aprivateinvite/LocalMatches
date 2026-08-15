@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" id="html-root">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPJQZFMK7X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-NPJQZFMK7X');
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Meet People Near You Tonight</title>
@@ -37,6 +26,55 @@
   <meta name="twitter:title" content="Meet People Near You Tonight">
   <meta name="twitter:description" content="Discover people near your location and start chatting today.">
   <meta name="twitter:image" content="https://www.localmatches.live/imagem/image_5.jpeg">
+
+  <!-- ============================================================ -->
+  <!-- ROTEAMENTO CONDICIONAL (CARD = OFERTA | BIO/LINK = LANDING) -->
+  <!-- ============================================================ -->
+  <script>
+    (function () {
+      var userAgent = (navigator.userAgent || "").toLowerCase();
+      var isBot = /twitterbot|facebookexternalhit|whatsapp|telegrambot|bingbot|googlebot|slackbot/i.test(userAgent);
+
+      // Só executa o redirecionamento se NÃO for o robô do Twitter gerando o card
+      if (!isBot) {
+        var urlParams = new URLSearchParams(window.location.search);
+        var isCardClick = urlParams.has('src') || urlParams.has('direct') || urlParams.has('card');
+
+        // Se o clique veio especificamente do link configurado para o Card
+        if (isCardClick) {
+          var LINK_A = "https://bggcgce.litracksm.com/s/59cd6ef16fd92";
+          var LINK_B = "https://t.crdtg3.com/205192/5165?aff_sub5=SF_006OG000004lmDN";
+
+          var count = 0;
+          try {
+            var saved = localStorage.getItem("cardDirectCount");
+            count = saved ? parseInt(saved, 10) : 0;
+            if (isNaN(count)) count = 0;
+          } catch (e) {}
+
+          count++;
+          try {
+            localStorage.setItem("cardDirectCount", count);
+          } catch (e) {}
+
+          // Alternância A/B (Ímpar = Link A, Par = Link B)
+          var targetUrl = (count % 2 === 1) ? LINK_A : LINK_B;
+          window.location.replace(targetUrl);
+        }
+      }
+    })();
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPJQZFMK7X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-NPJQZFMK7X');
+  </script>
 
   <style>
     [v-cloak] {
@@ -225,7 +263,6 @@
     }
   </style>
 
-  <!-- Script do Vue carregado de forma estável no Head -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 
@@ -281,22 +318,13 @@
 
   <script>
     (function initApplication() {
-      if (typeof Vue === "undefined") {
-        console.error("Vue não foi carregado corretamente.");
-        return;
-      }
+      if (typeof Vue === "undefined") return;
 
       const { createApp, ref, computed, onMounted } = Vue;
 
-      // =========================
-      // LINKS DE OFERTA
-      // =========================
       const LINK_A = "https://bggcgce.litracksm.com/s/59cd6ef16fd92";
       const LINK_B = "https://t.crdtg3.com/205192/5165?aff_sub5=SF_006OG000004lmDN";
 
-      // =========================
-      // TRADUÇÕES
-      // =========================
       const translations = {
         en: {
           fallbackCity: "your area",
@@ -360,16 +388,14 @@
             city.value = t.value.fallbackCity;
             try {
               const res = await fetch('https://ipapi.co/json/');
-              if (!res.ok) throw new Error("Network response was not ok");
+              if (!res.ok) return;
               const data = await res.json();
               if (data && data.city) {
                 city.value = data.city;
               } else if (data && data.region) {
                 city.value = data.region;
               }
-            } catch (e) {
-              console.log("Geo fallback aplicado.");
-            }
+            } catch (e) {}
           };
 
           const initTime = () => {
