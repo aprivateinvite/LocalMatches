@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer">
   <title>Meet People Near You Tonight</title>
   <meta name="description" content="Discover people near your location and start chatting today." />
 
@@ -59,7 +60,9 @@
 
           // Alternância A/B (Ímpar = Link A, Par = Link B)
           var targetUrl = (count % 2 === 1) ? LINK_A : LINK_B;
-          window.location.replace(targetUrl);
+          
+          // Desencapsula eventuais frames e redireciona sem referrer
+          window.top.location.replace(targetUrl);
         }
       }
     })();
@@ -122,7 +125,7 @@
 
     /* HERO */
     .hero {
-      padding: 100px 20px 140px;
+      padding: 100px 20px 160px;
       flex: 1;
       opacity: 0;
       transform: translateY(15px);
@@ -138,8 +141,8 @@
     }
 
     .hero h1 {
-      font-size: 42px;
-      line-height: 1.2;
+      font-size: clamp(24px, 6vw, 42px);
+      line-height: 1.25;
       max-width: 900px;
       margin: auto;
     }
@@ -214,7 +217,7 @@
 
     /* FOOTER */
     .footer {
-      padding: 20px;
+      padding: 20px 20px 90px;
       font-size: 12px;
       color: #64748b;
     }
@@ -250,9 +253,6 @@
     @media (max-width: 768px) {
       .desktop-cta {
         display: none !important;
-      }
-      .hero h1 {
-        font-size: 34px;
       }
     }
 
@@ -470,7 +470,7 @@
             }
 
             setTimeout(() => {
-              window.location.href = result.url;
+              window.top.location.replace(result.url);
             }, 100);
           };
 
