@@ -333,7 +333,7 @@
             afternoon: "Good afternoon",
             evening: "Good evening"
           },
-          headline: "{greet}! People in {city} are looking to meet tonight",
+          headline: "{greet}! Someone near you in {city} wants to meet you today...",
           subtext: "New profiles from {city} joined in the last few minutes",
           onlineText: "people online right now",
           cta: "See Matches Near You",
@@ -347,7 +347,7 @@
             afternoon: "Boa tarde",
             evening: "Boa noite"
           },
-          headline: "{greet}! Pessoas em {city} estão querendo um encontro hoje à noite",
+          headline: "{greet}! Tem alguém perto de você, em {city}, querendo te conhecer hoje...",
           subtext: "Novos perfis de {city} entraram nos últimos minutos",
           onlineText: "pessoas online agora",
           cta: "Ver Pessoas Perto de Você",
@@ -386,16 +386,40 @@
 
           const initGeo = async () => {
             city.value = t.value.fallbackCity;
+            
+            // Tentativa 1: ipapi.co
             try {
               const res = await fetch('https://ipapi.co/json/');
-              if (!res.ok) return;
-              const data = await res.json();
-              if (data && data.city) {
-                city.value = data.city;
-              } else if (data && data.region) {
-                city.value = data.region;
+              if (res.ok) {
+                const data = await res.json();
+                if (data && data.city) {
+                  city.value = data.city;
+                  return;
+                } else if (data && data.region) {
+                  city.value = data.region;
+                  return;
+                }
               }
             } catch (e) {}
+
+            // Tentativa 2 (Opção secundária em caso de falha ou rate limit): ipwho.is
+            try {
+              const resBackup = await fetch('https://ipwho.is/');
+              if (resBackup.ok) {
+                const dataBackup = await resBackup.json();
+                if (dataBackup && dataBackup.success !== false) {
+                  if (dataBackup.city) {
+                    city.value = dataBackup.city;
+                    return;
+                  } else if (dataBackup.region) {
+                    city.value = dataBackup.region;
+                    return;
+                  }
+                }
+              }
+            } catch (e) {}
+
+            // Permanece no fallback inicial se ambas as tentativas falharem
           };
 
           const initTime = () => {
